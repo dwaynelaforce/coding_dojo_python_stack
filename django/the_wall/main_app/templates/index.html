@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    <div class="row">
+        <div class="col px-4 m-4">
+            <h2>New User Registration</h2>
+            <form action="/register" method="post">
+                {% csrf_token %}
+                <input class="form-control" type="text" name="fname" placeholder="First Name" required><br>
+                <input class="form-control" type="text" name="lname" placeholder="Last Name" required><br>
+                <input class="form-control" type="email" name="email" placeholder="Email Address" required><br>
+                <input class="form-control" type="password" name="password" placeholder="Password" required><br>
+                <input class="form-control" type="password" name="confirm_password" placeholder="Confirm Password" required><br>
+                <button class="btn btn-primary">Register</button>
+            </form>
+        </div>
+        <div class="col px-4 m-4">
+            <h2>Login existing user</h2>
+            <form action="/login" method="post">
+                {% csrf_token %}
+                <input class="form-control" type="email" name="email" placeholder="Email Address" required><br>
+                <input class="form-control" type="password" name="password" placeholder="Password" required><br>
+                <button class="btn btn-primary">Log In</button>
+            </form>
+            {% if messages %}
+                <ul style="color:red">
+                    {% for msg in messages %}
+                        <li>{{msg}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col px-4 m-4">
+            <h2>Registered Users</h2>
+            {% if users %}
+                <table class="table">
+                    <tr>
+                        <th>User ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email Address</th>
+                        <th>Password</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{user.id}}</td>
+                            <td>{{user.fname}}</td>
+                            <td>{{user.lname}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.password}}</td>
+                            <td><a href="delete/{{user.id}}">Delete</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}    
+        </div>
+    </div>
+</body>
+</html>

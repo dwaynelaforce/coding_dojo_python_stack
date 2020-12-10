@@ -1,0 +1,6 @@
+call (environment name)/scripts/activate - activates virtual environment
+pip list - lists packages installed in the VE
+deactivate - deactivates the VE
+pip install (package) - automaticall downloads and installs the package in the current VE
+pip uninstall (package) - self explanatory
+type nul > (filename) - creates file in current directory

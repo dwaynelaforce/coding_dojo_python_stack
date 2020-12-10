@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Test</title>
+</head>
+<body>
+    <h1>Index Page</h1>
+    <h3>Create a User</h3>
+    <form action='/users' method='post'>
+        {% csrf_token %}
+        <ul>
+            <li>Name: <input type='text' name='name'></li>
+            <li>Email: <input type='text' name='email'></li>
+            <li>Date of Birth: <input type="date" name='birthdate'></li>
+            <li><button type='submit'>Create User</button></li>
+        </ul>
+    </form>
+</body>
+</html>

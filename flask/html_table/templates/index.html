@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML table</title>
+    <style>
+        td{
+            border: 1px solid black;
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tbody>
+            <tr>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Full name</td>
+            </tr>
+            {% for i in range(1, the_users|length): %}
+                <tr>
+                    {% for j in the_users[i]: %}
+                        <td>{{ the_users[i][j] }}</td>
+                    {% endfor %}
+                        <td>{{the_users[i]['first_name']}} {{the_users[i]['last_name']}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

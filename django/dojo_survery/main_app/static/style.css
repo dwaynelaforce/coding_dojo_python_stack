@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+body{
+    background-color: lightgoldenrodyellow;
+    color: rebeccapurple;
+}
+    #wrapper{
+        width: 500px;
+        margin: 0 auto;
+    }
+        h1{
+            margin: 10px;
+        }
+        form{
+            border: 2px solid rebeccapurple;
+        }
+            ul{
+                list-style-type: none;
+            }
+                li{
+                    margin: 5px 0px 5px 0px;
+                }
+                    label{
+                        margin-left: 5px;
+                    }

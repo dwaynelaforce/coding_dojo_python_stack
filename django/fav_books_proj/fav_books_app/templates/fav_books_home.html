@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row mb-4" id="navbar" style="background-color: aliceblue;">
+            <div class="col">
+                <h3>Welcome {{user.fname}} {{user.lname}}</h3>
+            </div>
+            <div class="col">
+                <a href="/logout">Log Out</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" id="add_book">
+                <h3>Add a favorite book</h3>
+                <form action="/fav_books/add_book" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="title" placeholder="Book title" class="my-2" style="min-width: 90%" required><br>
+                    <textarea name="desc" cols="30" rows="5" placeholder="Book description" class="my-2" style="min-width: 90%" required></textarea><br>
+                    <button class="btn btn-primary my-3">Add book to my favs</button>
+                </form>
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li style="color:red">{{message}}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="col" id="all_books">
+                <h3>All books</h3>
+                {% for book in books %}
+                    <div class="book my-4">
+                        <h5><a href="/fav_books/view_book/{{book.id}}">{{book.title}}</a></h5>
+                        <p>Added by {{book.created_by_user.fname}} {{book.created_by_user.lname}} on {{book.created_at}}</p>
+                        {% if user not in book.liked_by_users.all %}
+                            <a href="/fav_books/add_book_to_favs/{{book.id}}">add to favs</a>
+                        {% else %}
+                            <a href="/fav_books/unfavorite/{{book.id}}">remove from favs</a>
+                        {% endif %}
+                        {% if user == book.created_by_user %}
+                            <span> | </span>
+                            <a href="/fav_books/delete/{{book.id}}">delete book</a>
+                            <span> | </span>
+                            <a href="/fav_books/edit/{{book.id}}">edit book</a>    
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

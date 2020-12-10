@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row d-flex justify-content-between" id="navbar" style="background-color: aliceblue;">
+            <h3>Welcome USER</h3>
+            <div>
+                <a href="/dojo_reads">Home</a>
+                <span> | </span>
+                <a href="/logout">Log Out</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>Add a New Book and a Review</h3>
+                <form action="/dojo_reads/add_book_review_process" method="post">
+                    {% csrf_token %}
+                    <input class="form-control" type="text" name="title" id="title" placeholder="Book Title" required><br>
+                    <h5>Author:</h5>
+                    <ul style="list-style-type:none;">
+                        <li>
+                            <select class="form-control" name="author" id="author_select">
+                                <option value="" disabled selected>Select existing author</option>
+                                <option value="">PLACEHOLDER</option>
+                                <option value="">PLACEHOLDER</option>
+                                <option value="">PLACEHOLDER</option>
+                                <option value="">PLACEHOLDER</option>
+                            </select>
+                        </li>
+                        <li>
+                            <input class="form-control" type="text" name="new_author" id="new_author" placeholder="Or add a new author">
+                        </li>
+                    </ul>
+                    <textarea class="form-control my-4" name="desc" id="desc" cols="30" rows="3" placeholder="Write your review here"></textarea>
+                    <select class="form-control my-4" name="rating" id="rating">
+                        <option value="" disabled selected>Rating out of 5 stars</option>
+                        <option value="5">5 stars</option>
+                        <option value="4">4 stars</option>
+                        <option value="3">3 stars</option>
+                        <option value="2">2 stars</option>
+                        <option value="1">1 star</option>
+                    </select>
+                    <button class="btn btn-primary">Submit Review</button>
+                </form>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+</body>
+</html>

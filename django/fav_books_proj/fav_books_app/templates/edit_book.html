@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row mb-4" id="navbar" style="background-color: aliceblue;">
+            <div class="col">
+                <h3>Welcome {{user.fname}} {{user.lname}}</h3>
+            </div>
+            <div class="col">
+                <a href="/fav_books">FavBooks Home</a> | <a href="/logout">Log Out</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>Edit Book</h3>
+                <form action="/fav_books/edit/{{book.id}}/process" method="post">
+                    {% csrf_token %}
+                    <label for="title">Title:</label><br>
+                    <input type="text" name="title" style="min-width: 90%" value="{{book.title}}"><br>
+                    <label for="desc">Description:</label><br>
+                    <textarea name="desc" cols="30" rows="5" style="min-width: 90%">{{book.desc}}</textarea>
+                    <button class="btn btn-primary my-3">Apply Changes</button>
+                </form>
+                <p>Added by {{book.created_by_user.fname}} {{book.created_by_user.lname}}</p>
+                <p>Added on {{book.created_at}}</p>
+                <p>Last updated {{book.updated_at}}</p>
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li style="color:red">{{message}}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="col">
+                <h3>Users who like this book</h3>
+                {% if book.liked_by_users %}
+                    <ul>
+                        {% for user in book.liked_by_users.all %}
+                            <li>{{user.fname}} {{user.lname}}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

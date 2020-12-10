@@ -1,0 +1,57 @@
+from main_app.models import *
+
+Book.objects.create(title = "C Sharp", desc = "a book about the C Sharp programming language")
+Book.objects.create(title="Java", desc = "a book about Java")
+Book.objects.create(title="Python", desc="a book about Python")
+Book.objects.create(title="PHP", desc="a book about PHP")
+Book.objects.create(title="Ruby", desc="a book about Ruby")
+
+Author.objects.create(name="Jane Austin")
+Author.objects.create(name="Fyodor Dostoevsky")
+Author.objects.create(name="William Shakespeare")
+Author.objects.create(name="Emily Dickenson")
+Author.objects.create(name="Lau Tzu")
+
+Book.objects.filter(title="C Sharp")
+cSharp = Book.objects.get(id=1)
+cSharp.title = "C#"
+cSharp.save()
+
+Bill = Author.objects.get(id=4)
+Bill.name = "Bill"
+Bill.save()
+
+my_author = Author.objects.first()
+book1 = Book.objects.first()
+book2 = Book.objects.get(id=2)
+my_author.books.add(book1, book2)
+
+In [29]: my_author = Author.objects.get(id=2)
+In [30]: book1 = Book.objects.first()
+In [31]: book2 = Book.objects.get(id=2)
+In [32]: book3 = Book.objects.get(id=3)
+In [33]: my_author.books.add(book1, book2, book3)
+
+my_author = Author.objects.get(id=3)
+my_author.books.add(Book.objects.get(id=1))
+my_author.books.add(Book.objects.get(id=2))
+my_author.books.add(Book.objects.get(id=3))
+my_author.books.add(Book.objects.get(id=4))
+
+my_author = Author.objects.get(id=4)
+my_author.books.add(1,2,3,4,5)
+
+my_book = Book.objects.get(id=3)
+my_book.authors.all()
+
+third_book = Book.objects.get(id=3)
+third_book.authors.first().delete()
+third_book.save()
+
+Book.objects.get(id=2).authors.add(Author.objects.get(id=5))
+
+Author.objects.get(id=3).books.all()
+
+Book.objects.get(id=5).authors.all()
+
+

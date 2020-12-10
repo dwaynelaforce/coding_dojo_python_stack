@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+body{
+    background-color: rebeccapurple;
+}
+    #wrapper{
+        max-width: 1000px;
+        min-height: 500px;
+        margin: 0 auto;
+    }
+        #topbar{
+            display: flex;
+            justify-content: space-between;
+            color: lightgoldenrodyellow;
+            padding: 20px 5px 20px 5px;
+            border: 2px solid lightgoldenrodyellow;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+            button{
+                width: 100px;
+                height: 30px;
+                background-color: lightcyan;
+                color: rebeccapurple;
+                font-weight: bold;
+                border-radius: 10px;
+                box-shadow: 3px 3px 3px lightgray;
+            }
+        #gold_choices{
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 1px 20px 1px;
+            color: rebeccapurple;
+        }
+            .choice{
+                background-color: lightgoldenrodyellow;
+                width: 22.5%;
+                height: 200px;
+                text-align: center;
+                padding: 10px 0px 10px 0px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                border-radius: 5px;
+            }
+        #activities{
+            background-color: lightgoldenrodyellow;
+            color: rebeccapurple;
+            border-radius: 5px;
+            padding-bottom: 5px;
+        }
+            #activities h3{
+                padding: 20px 5px 20px 5px;
+            }
+            #activity_log{
+                min-height: 300px;
+                margin: 10px;
+                border: 2px solid rebeccapurple;
+                border-radius: 5px;
+                padding: 10px;
+            }

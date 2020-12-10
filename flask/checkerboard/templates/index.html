@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chckerboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <h1>This is the HTML</h1>
+    <div id="wrapper">
+        {% for i in range(y): %}
+            <div class="row">
+                {% for j in range(x) %}
+                    <div class="box color{{(i+j)%2+1}}"></div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>    
+</body>
+</html>

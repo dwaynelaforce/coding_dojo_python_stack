@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Trip</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row d-flex justify-content-between" id="navbar">
+            <h3>Hello {{user.fname}}, let's edit your trip!</h3>
+            <div class="align-middle">
+                <a href="/home">Dashboard</a>
+                <span>  |  </span>
+                <a href="/logout">Log Out</a>
+                <span>  |  </span>
+                <form action="/home/create_trip" method="get">
+                    <button class="btn btn-primary">Create a new trip!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <form action="/home/trips/{{trip.id}}/edit/process" method="post">
+            {% csrf_token %}
+            <input type="text" name="destination" value="{{trip.destination}}"><br>
+            <label for="start_date">Start Date</label>
+            <input type="date" name="start_date" id="start_date" value="{{start_date}}"><br>
+            <label for="end_date">End Date</label>
+            <input type="date" name="end_date" id="end_date" value="{{end_date}}"><br>
+            <textarea name="plan" id="plan" cols="30" rows="5">{{trip.plan}}</textarea><br>
+            <button>Submit</button>
+            <span> | </span>
+            <a href="/home">Cancel</a>
+        </form>
+        {% if messages %}
+            <ul style="list-style-type: none; color: red">
+            {% for message in messages %}
+                <li>{{message}}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>

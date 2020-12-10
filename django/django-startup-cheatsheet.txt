@@ -1,0 +1,53 @@
+******* Starting a Django Project - Windows ********
+
+\\\\\\\\\\\\ Creating A Project ////////////
+
+>cd python_stack/django/django_intro
+django_intro> django-admin startproject your_project_name_here
+
+\\\\\\\\\\\\\ Test It Out //////////////////
+
+your_project_name_here> python manage.py runserver
+
+\\\\\\\\\\\ Creating an App ///////////////
+
+your_project_name_here> python manage.py startapp your_app_name_here
+
+\\\\\\\\\\\ Project settings.py ////////////
+
+INSTALLED APPS = [
+	'your_app_name_here',
+	'django.contrib.admin',
+	'django.contrib.auth',
+	...
+]
+
+\\\\\\\\\\\\ Project urls.py //////////////
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+	path('admin/', admin.site.urls)
+	path('', include('your_app_name_here.urls'))
+]
+
+\\\\\\\\\\ App urls.py (to be created) //////////
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+	path('', views.index),
+]
+
+\\\\\\\\\\\\ App views.py /////////////////
+
+from django.shortcuts import render, HttpResponse
+
+def index(request):
+	return HttpResponse("Some string!")
+
+\\\\\\\\\\\ Run The Server //////////////
+
+your_project_name_here> python manage.py runserver

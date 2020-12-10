@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Back to Show List</a>
+    </div>
+    <h1>TV Show {{ show.id }}</h1>
+    <h3>Title: {{ show.title }}</h3>
+    <h3>Network: {{ show.network }}</h3>
+    <h3>Release Date: {{show.release_date}}</h3>
+    <h3>Description:</h3>
+    <p>{{ show.desc }}</p>
+    <p>Last updated: {{ show.updated_at }}</p>
+    <br>
+    <a href="/shows/{{show.id}}/edit">Edit Show</a> | <a href="/shows/{{show.id}}/delete">Delete Show</a>
+</body>
+</html>

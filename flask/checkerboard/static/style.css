@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+body{
+    background-color: aqua;
+}
+    div.row{
+        display: flex;
+    }
+        div.box{
+            min-height: 100px;
+            min-width: 100px;
+            border: 2px solid black;
+        }
+            .color1{
+                background-color: brown;
+            }
+            .color2{
+                background-color: darkslategray;
+            }

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Great Number Game</title>
+</head>
+<body>
+    <h1>Welcome to the Great Number Game!</h1>
+    <p>I am thinking of a number between 1 and 100.</p>
+    <p>Take a guess!</p>
+    <p id="guesses">Guesses so far: {{ request.session.user_guess_count }}</p>
+    <p id="clue">{{ request.session.clue }}</p>
+    <form action="/user_guess" method="POST">
+        {% csrf_token %}
+        <input type="number" name="user_number" id="user_number" value="0">
+        <button>Submit</button>
+    </form>
+</body>
+</html>

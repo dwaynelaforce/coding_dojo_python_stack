@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Trip</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row d-flex justify-content-between" id="navbar">
+            <h3>Hello {{user.fname}}, read about this trip!</h3>
+            <div class="align-middle">
+                <a href="/home">Dashboard</a>
+                <span>  |  </span>
+                <a href="/logout">Log Out</a>
+                <span>  |  </span>
+                <form action="/home/create_trip" method="get">
+                    <button class="btn btn-primary">Create a new trip!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h4>{{trip.destination}}</h4>
+        <ul style="list-style-type: none;">
+            <li>Start Date: {{trip.start_date}}</li>
+            <li>End Date: {{trip.end_date}}</li>
+            <li>Created on: {{trip.created_at}}</li>
+            <li>Last updated: {{trip.updated_at}}</li>
+            <li>Plan: {{trip.plan}}</li>
+            <li>Created by: {{trip.created_by_user.fname}}</li>
+        </ul>
+    </div>
+    <div>
+        <h5>People who've joined this trip</h5>
+        <ul style="list-style-type: none;">
+            {% for user in joined_users %}
+                <li>{{user.fname}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

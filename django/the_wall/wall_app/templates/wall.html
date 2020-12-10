@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row" id="navbar" style="background-color: azure;">
+            <div class="col">
+                <h1>CodingDojo Wall</h1>
+            </div>
+            <div class="col">
+                <span class="col">Welcome {{user.fname}} {{user.lname}}</span>
+                <a href="/logout">Log Out</a>
+            </div>
+        </div>
+        <div class="my-4" id="messagebox">
+                <h3 class="my-4">Post a message</h3>
+                <form action="/wall/post_msg" method="post">
+                    {% csrf_token %}
+                    <textarea name="message" style="min-width: 100%; min-height: 100px" placeholder="Write your message to other users here and press 'post message' when you're ready!" required></textarea>
+                    <button class="btn btn-primary my-3">post message</button>
+                </form>
+        </div>
+        <div id="wall-messages">
+            {% if msg_posts %}
+                {% for msg in msg_posts %}
+                    <div class="my-5">
+                        <h4>{{msg.user.fname}} {{msg.user.lname}} | {{msg.created_at}}</h3>
+                        <p>{{msg.content}}</p>
+                        <a href="/wall/{{msg.id}}/comments">Comments</a>
+                        {% if msg.user.id == user.id %}
+                            <span> | </span><a href="/wall/{{msg.id}}/delete">Delete my post</a>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

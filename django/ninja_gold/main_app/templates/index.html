@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <div id="topbar">
+            <div id="purse">
+                <h3>Purse: {{ request.session.purse }} gp</h3>
+            </div>
+            <div id="reset">
+                <form action="/reset">
+                    <button>Reset Game</button>
+                </form>
+            </div>    
+        </div>
+        <div id="gold_choices">
+            <div class="choice">
+                <h3>Farm</h3>
+                <p>Earns 10-20 gp</p>
+                <form action="/process_money" Method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="choice" value="farm">
+                    <button>Get gold!</button>
+                </form>
+            </div>
+            <div class="choice">
+                <h3>Cave</h3>
+                <p>Earns 5-10 gp</p>
+                <form action="/process_money" Method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="choice" value="cave">
+                    <button>Get gold!</button>
+                </form>
+            </div>
+            <div class="choice">
+                <h3>House</h3>
+                <p>Earns 2-5 gp</p>
+                <form action="/process_money" Method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="choice" value="house">
+                    <button>Get gold!</button>
+                </form>
+            </div>
+            <div class="choice">
+                <h3>Casino</h3>
+                <p>Place a bet of 50 gp</p>
+                <form action="/process_money" Method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="choice" value="casino">
+                    <button>Bet!</button>
+                </form>
+            </div>
+        </div>
+        <div id="activities">
+            <h3>Activities</h3>
+            <div id="activity_log">
+                {% for i in request.session.log %}
+                    <p>{{i}}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

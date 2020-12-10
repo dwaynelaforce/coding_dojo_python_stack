@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+    {% load static %}'
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Dojo Survey</h1>
+        <form action="/form_submit" method="post">
+            {% csrf_token %}
+            <ul>
+                <li>
+                    <label for="user_name">Your Name:</label>
+                    <input type="text" name="user_name" id="user_name">
+                </li>
+                <li>
+                    <label for="dojo_location">Dojo Location:</label>
+                    <select name="dojo_location" id="dojo_location">
+                        <option value=""></option>
+                        <option value="bellevue">Bellevue, WA</option>
+                        <option value="arlington">Arlington, VA</option>
+                        <option value="boise">Boise, ID</option>
+                        <option value="tulsa">Tulsa, OK</option>
+                        <option value="chicago">Chicago, IL</option>
+                        <option value="dallas">Dallas, TX</option>
+                        <option value="oakland">Oakland, CA</option>
+                        <option value="sanjose">Silicon Valley, CA</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="fav_lang">Favorite Language:</label>
+                    <select name="fav_lang" id="fav_lang">
+                        <option value=""></option>
+                        <option value="java">Java</option>
+                        <option value="python">Python</option>
+                        <option value="csharp">C#</option>
+                        <option value="ruby">Ruby</option>
+                        <option value="some_thing_else">Something Else</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="comment">Comment (optional):</label>
+                    <textarea name="comment" id="comment"></textarea>        
+                </li>
+            </ul>
+            <button>Submit</button>
+        </form>
+    </div>
+</body>
+</html>

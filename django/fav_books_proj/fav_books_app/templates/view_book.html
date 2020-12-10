@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row mb-4" id="navbar" style="background-color: aliceblue;">
+            <div class="col">
+                <h3>Welcome {{user.fname}} {{user.lname}}</h3>
+            </div>
+            <div class="col">
+                <a href="/fav_books">FavBooks Home</a> | <a href="/logout">Log Out</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>{{book.title}}</h3>
+                <p>Added by {{book.created_by_user.fname}} {{book.created_by_user.lname}}</p>
+                <p>Added on {{book.created_at}}</p>
+                <p>Last updated {{book.updated_at}}</p>
+                <h5>Book Description:</h5>
+                <p>{{book.desc}}</p>
+                <div>
+                    {% if user not in book.liked_by_users.all %}
+                        <a href="/fav_books/add_book_to_favs/{{book.id}}">add to favs</a>
+                    {% else %}
+                        <a href="/fav_books/unfavorite/{{book.id}}">remove from favs</a>
+                    {% endif %}
+                    {% if user == book.created_by_user %}
+                        <span> | </span>
+                        <a href="/fav_books/delete/{{book.id}}">delete book</a>
+                        <span> | </span>
+                        <a href="/fav_books/edit/{{book.id}}">edit book</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col">
+                <h3>Users who like this book</h3>
+                {% if book.liked_by_users %}
+                    <ul>
+                        {% for user in book.liked_by_users.all %}
+                            <li>{{user.fname}} {{user.lname}}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

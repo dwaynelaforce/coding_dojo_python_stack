@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row d-flex justify-content-between" id="navbar" style="background-color: aliceblue;">
+            <h3>Welcome USER</h3>
+            <div>
+                <a href="/dojo_reads/add_book_review">Add Book and Review</a>
+                <span> | </span>
+                <a href="/logout">Log Out</a>
+            </div>
+        </div>
+        <div class="row" id="main_content">
+            <div class="col" id="left_column">
+                <h3>Recent book reviews</h3>
+                {% for review in all_reviews %}
+                    <div>
+                        <h4><a href="/dojo_reads/book/{{review.book.id}}">{{review.book.title}}</a></h4>
+                        <ul style="list-style-type:none;">
+                            <li>{{review.rating}}</li>
+                            <li><p><a href="#">{{review.user.alias}}</a> says: {{review.desc}}</p></li>
+                            <li>Posted on {{review.created_at}}</li>
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col" id="right-column"></div>
+        </div>
+    </div>
+</body>
+</html>

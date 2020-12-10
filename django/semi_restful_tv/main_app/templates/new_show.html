@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Back to Show List</a>
+    </div>
+    <div class="form">
+        <h1>Add a New Show</h1>
+        <form action="/process_new_show" method="post">
+            {% csrf_token %}
+            <label for="title">Title</label><br>
+            <input type="text" name="title" id="title" required>
+            <div class="row">
+                <div class="col">
+                    <label for="network">Network</label><br>
+                    <input type="text" name="network" id="network" required>
+                </div>
+                <div class="col">
+                    <label for="release_date">Release Date</label><br>
+                    <input type="date" name="release_date" id="release_date" required>
+                </div>
+            </div>
+            <label for="desc">Description</label><br>
+            <textarea name="desc" id="desc" cols="30" rows="10"></textarea><br>
+            <button>Create</button>
+        </form>
+    </div>
+    <div class="errors">
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
